@@ -11,12 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/edu/home/index','Edu\HomeController@index')->name('edu.home.index');
-Route::get('/edu/home/home','Edu\HomeController@home')->name('edu.home.home');
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
-//Route::get('/edu/photo/index','Edu\PhotoController@index')->name('edu.photo.index');
-Route::post('/edu/home/store','Edu\HomeController@store')->name('edu.home.store');
-Route::resource('/edu/photo','Edu\PhotoController');
+Route::get('/','Util\HomeController@index')->name('home');
+Route::get('/register','Util\UserController@register')->name('register');
+Route::post('/register','Util\UserController@store')->name('register');
+Route::any('/code/send','Util\CodeController@send')->name('code.send');
+Route::get('/login','Util\UserController@login')->name('login');
+Route::post('/login','Util\UserController@loginForm')->name('login');
+Route::get('/logout','Util\UserController@logout')->name('logout');
+Route::get('/password_reset','Util\UserController@passwordReset')->name('password_reset');
+Route::post('/password_reset','Util\UserController@passwordRestForm')->name('password_reset');
+
+//后台路由
+Route::group(['middleware' => ['admin.auth'],'prefix'=>'admin','namespace'=>'Admin','as'=>'admin.'],function(){
+    Route::get('index','IndexController@index')->name('index');
+});
