@@ -10,6 +10,13 @@ use App\Http\Controllers\Controller;
 
 class UserController extends Controller
 {
+    public function __construct(){
+        //调用中间件，保护登录注册（已经登录用户不允许再访问登录注册）
+        $this->middleware('guest',[
+            'only'=>['login','loginForm','register','store','passwordReset','passwordResetForm'],
+        ]);
+    }
+
     //加载注册页面(get)
     public function register(){
         return view('user.register');//渲染注册页面
@@ -42,7 +49,7 @@ class UserController extends Controller
         ]);
         //验证完了后执行登录👉手册：用户认证
         $credentials = $request->only('email', 'password');
-        if (\Auth::attempt($credentials)) {
+        if (\Auth::attempt($credentials,$request->remember)) {
             // Authentication passed...
             //登录成功，跳转到首页
             return redirect()->route('home')->with('success','登录成功');

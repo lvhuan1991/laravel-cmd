@@ -28,4 +28,6 @@ Route::post('/password_reset','Util\UserController@passwordRestForm')->name('pas
 //后台路由
 Route::group(['middleware' => ['admin.auth'],'prefix'=>'admin','namespace'=>'Admin','as'=>'admin.'],function(){
     Route::get('index','IndexController@index')->name('index');
+
+    Route::resource('category','CategoryController');
 });

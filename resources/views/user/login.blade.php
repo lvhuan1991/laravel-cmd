@@ -59,24 +59,19 @@
                 </div>
                 <!-- Password -->
                 <div class="form-group">
-
                     <!-- Label -->
                     <label>
                         密码
                     </label>
-                    <!-- Input group -->
-                    <div class="input-group input-group-merge">
-                        <!-- Input -->
-                        <input type="password" name="password" class="form-control form-control-appended" placeholder="请输入邮箱密码">
-
-                        <!-- Icon -->
-                        <div class="input-group-append">
-                  <span class="input-group-text">
-                    {{--<i class="fe fe-eye"></i>--}}
-                  </span>
-                        </div>
-                    </div>
+                    <!-- Input -->
+                    <input type="password" name="password" class="form-control" placeholder="">
                 </div>
+
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" name="remember" id="remember" value="1">
+                    <label class="form-check-label" for="remember">记住我</label>
+                </div>
+
                 <!-- Submit -->
                 <button class="btn btn-lg btn-block btn-primary mb-3">
                     登录
@@ -84,11 +79,10 @@
 
                 <!-- Link -->
                 <div class="text-center">
-                    <small class="text-muted text-center">
-                        没有账号? <a href="{{route('register')}}">去注册</a>.
+                    <small class="text-muted text-center">没有账号?
+                        <a href="{{route('register')}}">去注册</a>.
                         <a href="{{route('password_reset')}}">重置密码</a>
                         <a href="{{route('home')}}">返回首页</a>
-
                     </small>
                 </div>
 
