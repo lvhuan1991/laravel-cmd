@@ -32,9 +32,9 @@
         </button>
 
         <!-- Brand -->
-        <a class="navbar-brand" href="index.html">
-            <img src="{{asset('org/assets')}}/img/logo.svg" class="navbar-brand-img
-          mx-auto" alt="...">
+        <a class="navbar-brand" href="index.html">梦里人生
+            {{--<img src="{{asset('org/assets')}}/img/logo.svg" class="navbar-brand-img--}}
+          {{--mx-auto" alt="...">--}}
         </a>
 
         <!-- User (xs) -->
@@ -44,7 +44,7 @@
             <div class="dropdown">
 
                 <!-- Toggle -->
-                <a href="#!" id="sidebarIcon" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a href="{{route('home')}}" id="sidebarIcon" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="avatar avatar-sm avatar-online">
                         <img src="{{asset('org/assets')}}/img/avatars/profiles/avatar-1.jpg" class="avatar-img rounded-circle" alt="...">
                     </div>
@@ -81,7 +81,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link active" href="index.html">
-                        <i class="fe fe-home"></i> 后盾网
+                        <i class="fe fe-home"></i> 周公解梦
                     </a>
                 </li>
                 <li class="nav-item">

@@ -42,6 +42,7 @@ class PasswordResetRequst extends FormRequest
     {
         return [
             'email.email'       =>'请输入正确邮箱' ,
+            'email.required'       =>'请输入手机号' ,
             'password.required' =>'请输入密码' ,
             'password.min'      =>'密码不得少于3位' ,
             'password.confirmed'=>'两次输入密码不一致' ,

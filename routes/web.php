@@ -31,3 +31,19 @@ Route::group(['middleware' => ['admin.auth'],'prefix'=>'admin','namespace'=>'Adm
 
     Route::resource('category','CategoryController');
 });
+//网站首页
+Route::get('/','Home\HomeController@index')->name('home');//网站首页
+//前台
+Route::group(['prefix'=>'home','namespace'=>'Home','as'=>'home.'],function(){
+    Route::get('/','HomeController@index')->name('index');
+    Route::resource('article','ArticleController');//文章管理
+});
+//工具类
+//Route::group(['prefix'=>'util','namespace'=>'Util','as'=>'util.'],function(){
+//
+//});
+//会员中心
+Route::group(['prefix'=>'member','namespace'=>'Member','as'=>'member.'],function(){
+    Route::resource('user','UserController');//用户管理
+});
+

@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Observers\UserObserver;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -16,8 +17,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        Schema::defaultStringLength(191);
-        User::observe(UserObserver::class);
+        Schema::defaultStringLength(191);//解决Mysql版本低
+        User::observe(UserObserver::class);//注册观察者
+        Carbon::setLocale('zh');//Carbon 中文时间
     }
 
     /**

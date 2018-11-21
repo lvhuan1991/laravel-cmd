@@ -56,10 +56,12 @@
                     <!-- Label -->
                     <label>
                         邮箱地址
+                        {{--手机号码--}}
                     </label>
 
                     <!-- Input -->
                     <input type="email" name="email" class="form-control" placeholder="lvhuan1991@qq.com">
+                    {{--<input type="number" name="email" class="form-control" placeholder="15770578700">--}}
 
                 </div>
 
@@ -121,9 +123,7 @@
                         已有账号? <a href="{{route('login')}}">去登录</a>.
                     </small>
                 </div>
-
             </form>
-
         </div>
         <div class="col-12 col-md-7 col-lg-6 col-xl-8 d-none d-lg-block">
 
@@ -132,6 +132,7 @@
 
         </div>
     </div> <!-- / .row -->
+{{session('code')}}
 </div>
 
 <!-- JAVASCRIPT

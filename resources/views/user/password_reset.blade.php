@@ -42,8 +42,11 @@
                 <div class="form-group">
                     <label>
                         邮箱
+                        {{--手机号--}}
                     </label>
+
                     <input type="email" value="{{old('email')}}" name="email" class="form-control" placeholder="">
+                    {{--<input type="number" value="{{old('number')}}" name="email" class="form-control" placeholder="">--}}
                 </div>
                 <div class="form-group">
                     <label>

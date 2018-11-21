@@ -18,6 +18,7 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
+        //这个view方法会在调用策略的地方作为第一个参数调用
         //当前登录用户，传递进来的模型
         //dd($model);//要把判断放在body下面才能看到不然布局问题可能导致看不到
         return $user->is_admin ==1;
@@ -81,4 +82,16 @@ class UserPolicy
     {
         //
     }
+
+    //判断指定用户是否为登录用户(当前登录的用户，已发表文章的用户)
+    public function isMine(User $user, User $model)
+    {
+        return $user->id == $model->id;
+    }
+
+
+
+
+
+
 }

@@ -37,20 +37,22 @@ class UserController extends Controller
     }
     //登录提交（post）
     public function loginForm(Request $request){
-        //东西不多判断就不分类写了直接写在下面
-        //$this->validate();验证
+        //dd($request->all());
+        //验证
+        //dd(1);
         $this->validate($request,[
             'email'=>'email',
-            'password'=>'min:3',
+            'password'=>'required|min:3'
         ],[
-            'email.email'=>'请输入正确邮箱',
-            'password.required'=>'请输入密码',
-            'password.min'=>'密码不得少于3位',
+            'email.email'=>'请输入邮箱',
+            'password.required'=>'请输入登录密码',
+            'password.min'=>'密码不得少于3位置'
         ]);
-        //验证完了后执行登录👉手册：用户认证
+        //dd(2);
+        //执行登录
+        //手册：用户认证
         $credentials = $request->only('email', 'password');
-        if (\Auth::attempt($credentials,$request->remember)) {
-            // Authentication passed...
+        if(\Auth::attempt($credentials,$request->remember)){
             //登录成功，跳转到首页
             return redirect()->route('home')->with('success','登录成功');
         }
@@ -67,7 +69,7 @@ class UserController extends Controller
     }
     //新密码提交
     public function passwordRestForm(PasswordResetRequst $requst){
-        //根据用户提交来的邮箱去查找数据
+        //根据用户提交来的邮箱去查找数据(first就是只有一个数组即一条数据,可以打印看到)
         $user = User::where('email',$requst->email)->first();
         if($user){
             //更新密码
