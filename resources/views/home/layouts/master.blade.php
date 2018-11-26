@@ -15,6 +15,8 @@
 
     <!-- Theme CSS -->
     <link rel="stylesheet" href="{{asset('org/assets')}}/css/theme.min.css">
+    @stack('css')
+    <meta name="csrf-token" content="{{csrf_token()}}">
 
     <title>很有梦想</title>
 </head>

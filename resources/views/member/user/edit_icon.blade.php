@@ -19,12 +19,12 @@
                             <span class="help-block text-muted small">请上传 200X200 像素并小于200KB的JPG图片</span>
                         </div>
                     </div>
-                    <form action="{{route('member.user.update',$user)}}" method="post" class="col-sm-8" id="form-icon">
+                    <form id="editIocn" action="{{route('member.user.update',$user)}}" method="post" class="col-sm-8" id="form-icon">
                         @csrf @method('PUT')
+                        <input type="hidden" name="icon" value="{{$user->icon}}">
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
 @endsection
@@ -44,17 +44,15 @@
                     data: {name: '后盾人', year: 2099},
                 };
                 hdjs.image(function (images) {
-                    alert(1);
+                    alert(images);
+                    //将返回的图片路径写入到input表单的val值
                     //上传成功的图片，数组类型
-                    // $("[name='thumb']").val(images[0]);
-                    // $(".img-thumbnail").attr('src', images[0]);
+                    $("[name='icon']").val(images[0]);//将返回的图片路径写入到input表单的val值
+                    $(".avatar-img").attr('src', images[0]);//将上传返回的图片写入avatar-img元素的src
+                    $('#editIocn').submit();//触发表单提交
                 }, options)
             });
         }
-        //移除图片
-        function removeImg(obj) {
-            $(obj).prev('img').attr('src', '../dist/static/image/nopic.jpg');
-            $(obj).parent().prev().find('input').val('');
-        }
+
     </script>
 @endpush

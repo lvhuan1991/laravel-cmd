@@ -9,5 +9,4 @@ $factory->define(App\Models\Article::class,function(Faker $faker){
         'category_id'=>mt_rand(1,5),
         'content'=>$faker->text($maxNbChars = 800),
     ];
-}
-);
+});

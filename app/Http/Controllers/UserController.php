@@ -34,7 +34,7 @@ class UserController extends Controller
     //加载登录页面(get)
     public function login(){
         return view('user.login');
-    }
+}
     //登录提交（post）
     public function loginForm(Request $request){
         //dd($request->all());
@@ -53,8 +53,12 @@ class UserController extends Controller
         //手册：用户认证
         $credentials = $request->only('email', 'password');
         if(\Auth::attempt($credentials,$request->remember)){
-            //登录成功，跳转到首页
-            return redirect()->route('home')->with('success','登录成功');
+            //return redirect()->route('home')->with('success','登录成功');//登录成功，跳转到首页
+            //加个判断，省的老是忘首页跳转，因该是在哪个页面登录然后跳转到哪个页面去的
+            if($request->from){
+                return redirect($request->from)->with('success','登录成功');
+            };
+            return redirect('/')->with('success','登录成功');
         }
         return redirect()->back()->with('danger','用户名密码不正确');
     }

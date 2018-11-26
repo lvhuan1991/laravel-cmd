@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -40,14 +39,16 @@
                 免费访问我们的仪表板
             </p>
             <!-- Form -->
-            <form method="post" action="{{route('login')}}">
-                @csrf
-                <!-- Email address -->
+            {{--<form method="post" action="{{route('login')}}">--}}
+            {{--加个从哪里来回哪里去的参数、而不要一登录就跳到首页去👇--}}
+            <form method="post" action="{{route('login',['from'=>Request::query('from')])}}">
+            @csrf
+            <!-- Email address -->
                 <div class="form-group">
                     <!-- Label -->
                     <label>邮箱</label>
-                    {{--<label>手机号</label>--}}
-                    <!-- Input -->
+                {{--<label>手机号</label>--}}
+                <!-- Input -->
                     <input type="email" name="email" class="form-control" placeholder="请输入邮箱">
                     {{--<input type="number" class="form-control" placeholder="请输入手机号">--}}
                 </div>
@@ -62,7 +63,8 @@
                     <!-- Input group -->
                     <div class="input-group input-group-merge">
                         <!-- Input -->
-                        <input type="password" name="password" class="form-control form-control-appended" placeholder="请输入密码">
+                        <input type="password" name="password" class="form-control form-control-appended"
+                               placeholder="请输入密码">
                         <!-- Icon -->
                         <div class="input-group-append">
                   <span class="input-group-text">
@@ -90,7 +92,7 @@
 @include('layouts.hdjs')
 @include('layouts.message')
 <script>
-    require(['hdjs','bootstrap'], function (hdjs) {
+    require(['hdjs', 'bootstrap'], function (hdjs) {
         let option = {
             //按钮
             el: '#bt',

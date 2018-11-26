@@ -9,8 +9,8 @@ class Article extends Model
 {
     //定义文章与用户的关联
     public function user(){
-        //return $this->belongsTo(User::class,'user_id','id');
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id','id');
+        return $this->belongsTo(User::class);//多对一
     }
     //定义栏目关联;文章与文章类别之间的关联
     public function category(){

@@ -12,12 +12,10 @@
                                 <div class="card-header">
                                     <div class="row align-items-center">
                                         <div class="col">
-
                                             <!-- Title -->
                                             <h4 class="card-header-title">
                                                 @if(auth()->id() == $user->id)我@else他@endif的文章
                                             </h4>
-
                                         </div>
                                         @can('isMine',$user)
                                             <div class="col-auto">
@@ -25,7 +23,6 @@
                                                 <a href="{{route('home.article.create')}}" class="btn btn-sm btn-primary">
                                                     发表文章
                                                 </a>
-
                                             </div>
                                         @endcan
                                     </div> <!-- / .row -->

@@ -14,6 +14,7 @@ class CreateArticlesTable extends Migration
     public function up()
     {
         Schema::create('articles', function (Blueprint $table) {
+            $table->engine = 'InnoDB';//设置引擎
             $table->increments('id');
             $table->string('title')->default('')->comment('文章标题');
             $table->unsignedInteger('user_id')->index()->default(0)->comment('文章作者');

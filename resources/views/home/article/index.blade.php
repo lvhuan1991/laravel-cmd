@@ -6,7 +6,6 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
-
                     <!-- Files -->
                     <div class="card" data-toggle="lists" data-lists-values="[&quot;name&quot;]">
                         <div class="card-header">
@@ -26,17 +25,16 @@
 
                                         <!-- Toggle -->
                                         <a href="#!" class="small text-muted dropdown-toggle" data-toggle="dropdown">
-                                            Sort order
+                                            筛选
                                         </a>
 
                                         <!-- Menu -->
                                         <div class="dropdown-menu">
-                                            <a class="dropdown-item sort" data-sort="name" href="#!">
-                                                Asc
+                                            @foreach($categories as $category)
+                                            <a class="dropdown-item sort" data-sort="name" href="{{route('home.article.index',['category'=>$category['id']])}}">
+                                                {{$category['title']}}
                                             </a>
-                                            <a class="dropdown-item sort" data-sort="name" href="#!">
-                                                Desc
-                                            </a>
+                                            @endforeach
                                         </div>
 
                                     </div>
@@ -63,7 +61,7 @@
                                         <div class="row align-items-center">
                                             <div class="col-auto">
                                                 <!-- Avatar -->
-                                                <a href="" class="avatar avatar-sm">
+                                                <a href="{{route('member.user.show',$article->user)}}" class="avatar avatar-sm">
                                                     <img src="{{$article->user->icon}}" alt="..." class="avatar-img rounded">
                                                 </a>
 

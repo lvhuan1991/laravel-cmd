@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Home;
 use App\Http\Requests\ArticleRequest;
 use App\Models\Article;
 use App\Models\Category;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -69,6 +70,7 @@ class ArticleController extends Controller
     //查看详情
     public function show(Article $article)
     {
+        
         return view('home.article.show',compact('article'));
     }
     //编辑模板加载

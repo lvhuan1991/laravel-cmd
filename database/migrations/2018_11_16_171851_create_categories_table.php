@@ -14,6 +14,7 @@ class CreateCategoriesTable extends Migration
     public function up()
     {
         Schema::create('categories', function (Blueprint $table) {
+            $table->engine = 'InnoDB';//设置引擎
             $table->increments('id');
             $table->string('title')->default('')->comment('栏目标题');
             $table->string('icon')->default('')->comment('栏目字体');
