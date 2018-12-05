@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,8 +13,10 @@
     <link rel="stylesheet" href="{{asset('org/assets')}}/libs/flatpickr/dist/flatpickr.min.css">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- Theme CSS -->
-    <link rel="stylesheet" href="{{asset('org/assets')}}/css/theme.min.css">
+    <meta name="csrf-token" content="{{csrf_token()}}">
 
+    <link rel="stylesheet" href="{{asset('org/assets')}}/css/theme.min.css">
+    @stack('css')
     <title>后台管理</title>
 </head>
 <body>
@@ -27,14 +28,15 @@
     <div class="container-fluid">
 
         <!-- Toggler -->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarCollapse" aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidebarCollapse"
+                aria-controls="sidebarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
         <!-- Brand -->
-        <a class="navbar-brand" href="index.html">梦里人生
+        <a class="navbar-brand" href="{{route('home')}}">梦里人生
             {{--<img src="{{asset('org/assets')}}/img/logo.svg" class="navbar-brand-img--}}
-          {{--mx-auto" alt="...">--}}
+            {{--mx-auto" alt="...">--}}
         </a>
 
         <!-- User (xs) -->
@@ -44,9 +46,11 @@
             <div class="dropdown">
 
                 <!-- Toggle -->
-                <a href="{{route('home')}}" id="sidebarIcon" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a href="{{route('home')}}" id="sidebarIcon" class="dropdown-toggle" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="avatar avatar-sm avatar-online">
-                        <img src="{{asset('org/assets')}}/img/avatars/profiles/avatar-1.jpg" class="avatar-img rounded-circle" alt="...">
+                        <img src="{{asset('org/assets')}}/img/avatars/profiles/avatar-1.jpg"
+                             class="avatar-img rounded-circle" alt="...">
                     </div>
                 </a>
 
@@ -68,7 +72,8 @@
             <!-- Form -->
             <form class="mt-4 mb-3 d-md-none">
                 <div class="input-group input-group-rounded input-group-merge">
-                    <input type="search" class="form-control form-control-rounded form-control-prepended" placeholder="Search" aria-label="Search">
+                    <input type="search" class="form-control form-control-rounded form-control-prepended"
+                           placeholder="Search" aria-label="Search">
                     <div class="input-group-prepend">
                         <div class="input-group-text">
                             <span class="fe fe-search"></span>
@@ -85,7 +90,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#sidebarPages" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPages">
+                    <a class="nav-link" href="#sidebarPages" data-toggle="collapse" role="button" aria-expanded="false"
+                       aria-controls="sidebarPages">
                         <i class="fe fe-file"></i> 文章系统
                     </a>
                     <div class="collapse " id="sidebarPages">
@@ -98,14 +104,90 @@
                         </ul>
                     </div>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link" href="#sidebarLayouts" data-toggle="collapse" role="button"
+                       aria-expanded="false" aria-controls="sidebarLayouts">
+                        <i class="fe fe-layout"></i> 网站配置
+                    </a>
+                    <div class="collapse " id="sidebarLayouts">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{route('admin.config.edit',['name'=>'base'])}}" class="nav-link">
+                                    基本配置
+                                </a>
+                                <a href="{{route('admin.config.edit',['name'=>'upload'])}}" class="nav-link">
+                                    上传配置
+                                </a>
+                                <a href="{{route('admin.config.edit',['name'=>'mail'])}}" class="nav-link">
+                                    邮件配置
+                                </a>
+                                <a href="{{route('admin.config.edit',['name'=>'code'])}}" class="nav-link">
+                                    验证码配置
+                                </a>
+                                <a href="{{route('admin.config.edit',['name'=>'search'])}}" class="nav-link">
+                                    搜索配置
+                                </a>
+                                <a href="{{route('admin.config.edit',['name'=>'wechat'])}}" class="nav-link">
+                                    微信配置
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#sidebarAuth" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuth">
+                    <a class="nav-link" href="#sidebarWechat" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuth">
+                        <i class="fe fe-message-square"></i> 微信管理
+                    </a>
+                    <div class="collapse show" id="sidebarWechat">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{route('wechat.button.index')}}" class="nav-link" >
+                                    微信菜单
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('wechat.response_text.index')}}" class="nav-link" >
+                                    文本回复
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('wechat.response_news.index')}}" class="nav-link" >
+                                    图文回复
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{{route('wechat.response_base.create')}}" class="nav-link" >
+                                    基本回复
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#sidebarSwiper" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarswiper">
+                        <i class="fe fe-message-square"></i> 轮播图管理
+                    </a>
+                    <div class="collapse show" id="sidebarSwiper">
+                        <ul class="nav nav-sm flex-column">
+                            <li class="nav-item">
+                                <a href="{{route('swiper.swiper.index')}}" class="nav-link" >
+                                    图片管理
+                                </a>
+
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#sidebarAuth" data-toggle="collapse" role="button" aria-expanded="false"
+                       aria-controls="sidebarAuth">
                         <i class="fe fe-user"></i> Authentication
                     </a>
                     <div class="collapse" id="sidebarAuth">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="#sidebarSignIn" class="nav-link" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarSignIn">
+                                <a href="#sidebarSignIn" class="nav-link" data-toggle="collapse" role="button"
+                                   aria-expanded="false" aria-controls="sidebarSignIn">
                                     Sign in
                                 </a>
                                 <div class="collapse" id="sidebarSignIn">
@@ -129,7 +211,8 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a href="#sidebarSignUp" class="nav-link" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarSignUp">
+                                <a href="#sidebarSignUp" class="nav-link" data-toggle="collapse" role="button"
+                                   aria-expanded="false" aria-controls="sidebarSignUp">
                                     Sign up
                                 </a>
                                 <div class="collapse" id="sidebarSignUp">
@@ -153,7 +236,8 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a href="#sidebarPassword" class="nav-link" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarPassword">
+                                <a href="#sidebarPassword" class="nav-link" data-toggle="collapse" role="button"
+                                   aria-expanded="false" aria-controls="sidebarPassword">
                                     Password reset
                                 </a>
                                 <div class="collapse" id="sidebarPassword">
@@ -177,7 +261,8 @@
                                 </div>
                             </li>
                             <li class="nav-item">
-                                <a href="#sidebarError" class="nav-link" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarError">
+                                <a href="#sidebarError" class="nav-link" data-toggle="collapse" role="button"
+                                   aria-expanded="false" aria-controls="sidebarError">
                                     Error
                                 </a>
                                 <div class="collapse" id="sidebarError">
@@ -190,54 +275,6 @@
                                         <li class="nav-item">
                                             <a href="error.html" class="nav-link">
                                                 Basic
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link" href="#sidebarLayouts" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarLayouts">
-                        <i class="fe fe-layout"></i> Layouts
-                    </a>
-                    <div class="collapse " id="sidebarLayouts">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="index.html" class="nav-link">
-                                    Sidenav
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="dashboard-side-topnav.html" class="nav-link ">
-                                    Sidenav + top nav
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="dashboard-topnav.html" class="nav-link">
-                                    Topnav
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#sidebarDashboard" class="nav-link" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarDashboard">
-                                    Without hero chart
-                                </a>
-                                <div class="collapse " id="sidebarDashboard">
-                                    <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item">
-                                            <a href="dashboard-no-hero.html" class="nav-link ">
-                                                Sidenav
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="dashboard-side-topnav-no-hero.html" class="nav-link ">
-                                                Sidenav + top nav
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="dashboard-topnav-no-hero.html" class="nav-link">
-                                                Topnav
                                             </a>
                                         </li>
                                     </ul>
@@ -269,7 +306,8 @@
                     </a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link" href="#sidebarComponents" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarComponents">
+                    <a class="nav-link" href="#sidebarComponents" data-toggle="collapse" role="button"
+                       aria-expanded="false" aria-controls="sidebarComponents">
                         <i class="fe fe-book-open"></i> Components
                     </a>
                     <div class="collapse " id="sidebarComponents">
@@ -404,11 +442,11 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link " href="changelog.html">
-                        <i class="fe fe-git-branch"></i> Changelog <span class="badge badge-primary ml-auto">v1.1.2</span>
+                        <i class="fe fe-git-branch"></i> Changelog <span
+                                class="badge badge-primary ml-auto">v1.1.2</span>
                     </a>
                 </li>
             </ul>
-
 
 
             <!-- User (md) -->
@@ -425,9 +463,11 @@
                 <div class="dropup">
 
                     <!-- Toggle -->
-                    <a href="#!" id="sidebarIconCopy" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a href="#!" id="sidebarIconCopy" class="dropdown-toggle" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
                         <div class="avatar avatar-sm avatar-online">
-                            <img src="{{asset('org/assets')}}/img/avatars/profiles/avatar-1.jpg" class="avatar-img rounded-circle" alt="...">
+                            <img src="{{asset('org/assets')}}/img/avatars/profiles/avatar-1.jpg"
+                                 class="avatar-img rounded-circle" alt="...">
                         </div>
                     </a>
 

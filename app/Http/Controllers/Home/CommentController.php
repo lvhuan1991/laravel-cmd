@@ -11,8 +11,13 @@ class CommentController extends Controller
     //获取指定文章的所有评论数据
     public function index(Request $request,Comment $comment)
     {
-        $comments = $comment->with('user')->where('article_id',$request->artcile_id)->get();
-        //dd($comments->toArray());
+        //dd($request->toArray());
+        $comments = $comment->with('user')->where('article_id',$request->article_id)->get();
+//        dd(11);
+//        dd($comments->toArray());
+        foreach($comments as $comment){
+            $comment->zan_num = $comment->zan->count();
+        }
         return ['code'=>1,'message'=>'','comments'=>$comments];
     }
 

@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\Comment;
+use App\Models\Config;
+use App\Observers\CommentObserver;
+use App\Observers\ConfigObserver;
 use App\Observers\UserObserver;
 use App\User;
 use Carbon\Carbon;
@@ -20,6 +24,8 @@ class AppServiceProvider extends ServiceProvider
         Schema::defaultStringLength(191);//解决Mysql版本低
         User::observe(UserObserver::class);//注册观察者
         Carbon::setLocale('zh');//Carbon 中文时间
+        Comment::observe(CommentObserver::class);//注册观察者
+        Config::observe(ConfigObserver::class);
     }
 
     /**

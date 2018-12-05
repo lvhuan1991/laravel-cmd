@@ -89,7 +89,7 @@ class UserPolicy
         return $user->id == $model->id;
     }
     //检测登录用户指定用户不是一个人
-    public function inNotMine(User $user,User $model){
+    public function isNotMine(User $user,User $model){
         return $user->id != $model->id;
     }
 

@@ -18,7 +18,8 @@ class VerifyCsrfToken extends Middleware
      *
      * @var array
      */
+    //添加白名单
     protected $except = [
-        //
+        'wechat/api/handler'
     ];
 }

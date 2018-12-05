@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Member;
 
 use App\Models\Article;
+use App\Models\Collect;
+use App\Models\Zan;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,20 +12,6 @@ use App\Http\Controllers\Controller;
 class UserController extends Controller
 {
 
-    public function index()
-    {
-        //
-    }
-
-    public function create()
-    {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
-    }
 
     public function show(User $user)
     {
@@ -65,18 +53,16 @@ class UserController extends Controller
         return back()->with('success','操作成功');
     }
 
-    public function destroy(User $user)
-    {
-        //
-    }
     //关注 取消关注
     //这里user 被关注者
     public function attention(User $user){
         //自己不能关注自己
-        $this->authorize('inNotMine',$user);
-        //dd($user->toArray());
-        auth()->user()->following()->toggle($user);//toggle是系统的切换方法；following和fans是自己定义的
-        //$user->fans()->toggle(auth()->user());
+//        dd($user);
+        $this->authorize('isNotMine',$user);
+//        dd($user->toArray());
+//        auth()->user()->following()->toggle($user);//toggle是系统的切换方法；following和fans是自己定义的
+        $user->fans()->toggle(auth()->user());
+//        dd('1');
         return back();
     }
     //我的粉丝
@@ -91,5 +77,21 @@ class UserController extends Controller
         //获取$user用户关注的人
         $followings = $user->following()->paginate(10);
         return view('member.user.my_following',compact('user','followings'));
+    }
+    //我的点赞
+    public function myZan(User $user,Request $request,Zan $zan){
+        $type=$request->query('type');
+        //通过用户查找该用户所有点赞数据
+        //dd($zan);
+        $zansData = $user->zan()->where('zan_type', 'App\Models\\' . ucfirst($type))->paginate(1);
+        return view('member.user.my_zan_' . $type , compact('user','zan','zansData'));
+
+    }
+    //我的收藏
+    public function myCollect(User $user,Request $request,Collect $collect){
+        $type=$request->query('type');
+        //dd($type);
+        $collectsData = $user->collect()->where('collect_type', 'App\Models\\' . ucfirst($type))->paginate(2);
+        return view('member.user.my_collect_' . $type , compact('user','collect','collectsData'));
     }
 }

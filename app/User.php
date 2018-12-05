@@ -3,6 +3,9 @@
 namespace App;
 
 use App\Models\Attachment;
+use App\Models\Collect;
+use App\Models\Zan;
+use Illuminate\Notifications\DatabaseNotification;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -20,14 +23,14 @@ class User extends Authenticatable
         'name', 'email', 'password','email_verified_at','icon'
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token',
     ];
+    //重写 数据库通知中 获取所有通知的 notifications 方法
+    public function notifications()
+    {
+        return $this->morphMany(DatabaseNotification::class, 'notifiable')->orderBy('read_at', 'asc')->orderBy('created_at', 'desc');
+    }
     //讲登录的时候创建的默认图片；但是没有用到（一直都忘记了）
     public function getIconAttribute( $key )
     {
@@ -45,6 +48,14 @@ class User extends Authenticatable
     //获取指定用户粉丝(多对多关联;传递四个参数)
     public function fans(){
         return $this->belongsToMany(User::class,'followers','user_id','following_id');
+    }
+    //用户关联 collect()
+    public function collect(){
+        return $this->hasMany(Collect::class);
+    }
+    //用户关联 zan()
+    public function zan(){
+        return $this->hasMany(Zan::class);
     }
 
 }
