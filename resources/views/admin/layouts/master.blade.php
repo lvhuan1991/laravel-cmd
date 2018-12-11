@@ -115,9 +115,11 @@
                                 <a href="{{route('admin.config.edit',['name'=>'base'])}}" class="nav-link">
                                     基本配置
                                 </a>
+                                @role('Admin-config-upload')
                                 <a href="{{route('admin.config.edit',['name'=>'upload'])}}" class="nav-link">
                                     上传配置
                                 </a>
+                                @endrole
                                 <a href="{{route('admin.config.edit',['name'=>'mail'])}}" class="nav-link">
                                     邮件配置
                                 </a>
@@ -138,7 +140,7 @@
                     <a class="nav-link" href="#sidebarWechat" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuth">
                         <i class="fe fe-message-square"></i> 微信管理
                     </a>
-                    <div class="collapse show" id="sidebarWechat">
+                    <div class="collapse " id="sidebarWechat">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a href="{{route('wechat.button.index')}}" class="nav-link" >
@@ -163,11 +165,12 @@
                         </ul>
                     </div>
                 </li>
+                @role('Admin-swiper')
                 <li class="nav-item">
                     <a class="nav-link" href="#sidebarSwiper" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarswiper">
                         <i class="fe fe-message-square"></i> 轮播图管理
                     </a>
-                    <div class="collapse show" id="sidebarSwiper">
+                    <div class="collapse " id="sidebarSwiper">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
                                 <a href="{{route('swiper.swiper.index')}}" class="nav-link" >
@@ -178,271 +181,40 @@
                         </ul>
                     </div>
                 </li>
+                @endrole
                 <li class="nav-item">
-                    <a class="nav-link" href="#sidebarAuth" data-toggle="collapse" role="button" aria-expanded="false"
-                       aria-controls="sidebarAuth">
-                        <i class="fe fe-user"></i> Authentication
+                    <a class="nav-link" href="#sidebarAuth" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarAuth">
+                        <i class="fe fe-user"></i> 权限管理
                     </a>
-                    <div class="collapse" id="sidebarAuth">
+                    <div class="collapse show" id="sidebarAuth">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="#sidebarSignIn" class="nav-link" data-toggle="collapse" role="button"
-                                   aria-expanded="false" aria-controls="sidebarSignIn">
-                                    Sign in
+                                <a href="{{route('role.user.index')}}" class="nav-link" >
+                                    用户管理
                                 </a>
-                                <div class="collapse" id="sidebarSignIn">
-                                    <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item">
-                                            <a href="sign-in-cover.html" class="nav-link">
-                                                Cover
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="sign-in-illustration.html" class="nav-link">
-                                                Illustration
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="sign-in.html" class="nav-link">
-                                                Basic
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#sidebarSignUp" class="nav-link" data-toggle="collapse" role="button"
-                                   aria-expanded="false" aria-controls="sidebarSignUp">
-                                    Sign up
+                                <a href="{{route('role.role.index')}}" class="nav-link" >
+                                    角色管理
                                 </a>
-                                <div class="collapse" id="sidebarSignUp">
-                                    <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item">
-                                            <a href="sign-up-cover.html" class="nav-link">
-                                                Cover
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="sign-up-illustration.html" class="nav-link">
-                                                Illustration
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="sign-up.html" class="nav-link">
-                                                Basic
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#sidebarPassword" class="nav-link" data-toggle="collapse" role="button"
-                                   aria-expanded="false" aria-controls="sidebarPassword">
-                                    Password reset
+                                <a href="{{route('role.permission.index')}}" class="nav-link" >
+                                    权限列表
                                 </a>
-                                <div class="collapse" id="sidebarPassword">
-                                    <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item">
-                                            <a href="password-reset-cover.html" class="nav-link">
-                                                Cover
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="password-reset-illustration.html" class="nav-link">
-                                                Illustration
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="password-reset.html" class="nav-link">
-                                                Basic
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a href="#sidebarError" class="nav-link" data-toggle="collapse" role="button"
-                                   aria-expanded="false" aria-controls="sidebarError">
-                                    Error
-                                </a>
-                                <div class="collapse" id="sidebarError">
-                                    <ul class="nav nav-sm flex-column">
-                                        <li class="nav-item">
-                                            <a href="error-illustration.html" class="nav-link">
-                                                Illustration
-                                            </a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a href="error.html" class="nav-link">
-                                                Basic
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
                             </li>
                         </ul>
                     </div>
                 </li>
-                <li class="nav-item d-md-none">
-                    <a class="nav-link" href="#sidebarModalActivity" data-toggle="modal">
-                        <span class="fe fe-bell"></span> Notifications
-                    </a>
-                </li>
+
             </ul>
 
             <!-- Divider -->
             <hr class="my-3">
 
-            <!-- Heading -->
-            <h6 class="navbar-heading text-muted">
-                Documentation
-            </h6>
+
 
             <!-- Navigation -->
             <ul class="navbar-nav mb-md-3">
                 <li class="nav-item">
-                    <a class="nav-link " href="getting-started.html">
-                        <i class="fe fe-clipboard"></i> Getting started
-                    </a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link" href="#sidebarComponents" data-toggle="collapse" role="button"
-                       aria-expanded="false" aria-controls="sidebarComponents">
-                        <i class="fe fe-book-open"></i> Components
-                    </a>
-                    <div class="collapse " id="sidebarComponents">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="components.html#alerts" class="nav-link">
-                                    Alerts
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="components.html#avatars" class="nav-link">
-                                    Avatars
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="components.html#badges" class="nav-link">
-                                    Badges
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="components.html#breadcrumb" class="nav-link">
-                                    Breadcrumb
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="components.html#buttons" class="nav-link">
-                                    Buttons
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="components.html#button-group" class="nav-link">
-                                    Button group
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="components.html#cards" class="nav-link">
-                                    Cards
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="components.html#charts" class="nav-link">
-                                    Charts
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="components.html#dropdowns" class="nav-link">
-                                    Dropdowns
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="components.html#forms" class="nav-link">
-                                    Forms
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="components.html#icons" class="nav-link">
-                                    Icons
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="components.html#lists" class="nav-link">
-                                    Lists
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="components.html#loaders" class="nav-link">
-                                    Loaders
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="components.html#modal" class="nav-link">
-                                    Modal
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="components.html#navs" class="nav-link">
-                                    Navs
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="components.html#navbar" class="nav-link">
-                                    Navbar
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="components.html#page-headers" class="nav-link">
-                                    Page headers
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="components.html#pagination" class="nav-link">
-                                    Pagination
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="components.html#popovers" class="nav-link">
-                                    Popovers
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="components.html#progress" class="nav-link">
-                                    Progress
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="components.html#social-posts" class="nav-link">
-                                    Social post
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="components.html#tables" class="nav-link">
-                                    Tables
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="components.html#tooltips" class="nav-link">
-                                    Tooltips
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="components.html#typography" class="nav-link">
-                                    Typography
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="components.html#utilities" class="nav-link">
-                                    Utilities
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link " href="changelog.html">
-                        <i class="fe fe-git-branch"></i> Changelog <span
+                        <i class="fe fe-git-branch"></i> 系统版本 <span
                                 class="badge badge-primary ml-auto">v1.1.2</span>
                     </a>
                 </li>

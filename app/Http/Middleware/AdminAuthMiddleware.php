@@ -15,7 +15,8 @@ class AdminAuthMiddleware
      */
     public function handle($request, Closure $next)
     {
-        if(!auth()->check() || auth()->user()->is_admin !=1){
+        if(!auth()->check() || !auth()->user()->can('Admin-admin-index')){
+            return redirect()->route('home');
         }
         return $next($request);
 

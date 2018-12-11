@@ -89,4 +89,18 @@ Route::group(['prefix'=>'wechat','namespace'=>'Wechat','as'=>'wechat.'],function
     //基本回复  关注回复以及默认回复
     Route::resource('response_base','ResponseBaseController');
 });
-
+//权限管理
+Route::group(['prefix'=>'role','namespace'=>'Role','as'=>'role.'],function(){
+    //权限列表
+    Route::get('permission/index','PermissionController@index')->name('permission.index');
+    //清除权限缓存
+    Route::get('permission/forget_permission_cache','PermissionController@forgetPermissionCache')->name('permission.forget_permission_cache');
+    //角色管理的资源路由
+    Route::resource('role','RoleController');
+    //设置角色权限(因为上面的资源路由不包含新创建的方法所以得再创一个路由,因为只有资源路由自己带参数所以下面的得带参数)
+    Route::post('role/set_role_permission/{role}','RoleController@setRolePermission')->name('role.set_role_permission');
+    //用户管理
+    Route::get('user/index','UserController@index')->name('user.index');
+    Route::get('user/user_set_role_create/{user}','UserController@userSetRoleCreate')->name('user.user_set_role_create');
+    Route::post('user/user_set_role_store/{user}','UserController@userSetRoleStore')->name('user.user_set_role_store');
+});

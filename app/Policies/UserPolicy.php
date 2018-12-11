@@ -21,7 +21,7 @@ class UserPolicy
         //这个view方法会在调用策略的地方作为第一个参数调用
         //当前登录用户，传递进来的模型
         //dd($model);//要把判断放在body下面才能看到不然布局问题可能导致看不到
-        return $user->is_admin ==1;
+//        return $user->is_admin ==1;
     }
 
     /**
